@@ -1,0 +1,236 @@
+.content-container {
+    display: flex;
+}
+
+.box {
+    flex: 1;
+    margin: 50px;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #75D7D5;
+}
+
+.box-title {
+    text-align: center;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.account-info-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+.account-info-list li:nth-child(even) {
+    background-color: #f2f7f9;
+}
+
+.account-info-list li:nth-child(odd) {
+    background-color: #a8eceb;
+}
+
+.challenges-list {
+    width: 100%;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+}
+
+.challenge-item {
+    display: flex;
+    padding: 10px;
+}
+
+.challenge-item:nth-child(even) {
+    background-color: #f2f7f9;
+}
+
+.challenge-item:nth-child(odd) {
+    background-color: #a8eceb;
+}
+
+.challenge-rank-box {
+    width: 2em;
+    height: 2em;
+    color: #000000;
+    text-align: center;
+    line-height: 2em;
+    margin-right: 10px;
+}
+
+.challenge-name-box,
+.challenge-difficulty-box,
+.challenge-language-box,
+.challenge-date-box {
+    width: 25%;
+}
+
+.challenge-info {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.box button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    color: black;
+    background-color: white;
+}
+
+.box button:hover {
+    background-color: #79adb9;
+    color: #fff;
+}
+
+#delete-button {
+    background-color: #d9534f;
+    color: white;
+}
+
+#delete-button:hover {
+    background-color: #680300;
+    color: white;
+}
+
+@media screen and (max-width: 868px) {
+    .search-bar {
+        width: 100%;
+    }
+}
+
+.user-info-bar {
+    height: 43px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    margin-left: 30px;
+    margin-bottom: 0;
+}
+
+.no-challenge-completed {
+    display: flex;
+    padding: 10px;
+    background-color: #f2f7f9;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.no-badge {
+    display: flex;
+    padding: 10px;
+    background-color: #f2f7f9;
+    justify-content: center;
+}
+
+#search-bar-account {
+    margin-left: 0;
+}
+
+.successful-challenge-div {
+    margin-top: 10px;
+}
+
+.not-found {
+    display: flex;
+    padding: 10px;
+    background-color: #f2f7f9;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.badge-1er {
+    background-color: #ffae00;
+    color: #fff;
+}
+
+.badge-2eme {
+    background-color: #c0c0c0;
+    color: #fff;
+}
+
+.badge-3eme {
+    background-color: #cd7f32;
+    color: #fff;
+}
+
+.badge {
+    margin-left: 10px;
+    padding: 2px 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+
+.badge[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    font-size: 12px;
+}
+
+.badge-list {
+    width: 100%;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+}
+
+.badge-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f7f9;
+}
+
+.badge-list li:nth-child(even) {
+    background-color: #f2f7f9;
+}
+
+.badge-list li:nth-child(odd) {
+    background-color: #a8eceb;
+}
+
+.achievements-list {
+    display: flex;
+    width: 100%;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.achievements-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f7f9;
+}
+
+.user-points {
+    width: 100%;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+}
+
+.user-points li:nth-child(even) .user-points li:nth-child(odd) {
+    background-color: #f2f7f9;
+}
+
+.user-points li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f7f9;
+}

@@ -1,0 +1,50 @@
+User (
+    userId (PK),
+    userNickname (UQ, NN),
+    userEmail (UQ, NN),
+    userPassword (NN),
+    userRole (NN),
+    userScore
+)
+
+Badge (
+    badgeId (PK),
+    badgeName (NN),
+    badgeType (NN)
+)
+
+Challenge (
+    challengeId (PK),
+    challengeName (NN),
+    challengeDate (NN),
+    challengeDifficulty (NN),
+    challengeLanguage (NN),
+    challengeDescription,
+    challengeFlag (NN),
+    challengeDocker (NN),
+    challengePoints (NN)
+)
+
+Granted (
+    grantedUser (PK, FK -> User.userId),
+    grantedBadge (PK, FK -> Badge.badgeId),
+    grantedDate (NN)
+)
+
+Completed (
+    completedUser (PK, FK -> User.userId),
+    completedChallenge (PK, FK -> Challenge.challengeId),
+    completedStatus (NN),
+    completedDate (NN)
+)
+
+Tag (
+    tagId (PK),
+    tagName (UQ, NN),
+    tagColor (NN)
+)
+
+ChallengeTag (
+    challengeTagChallenge (PK, FK -> Challenge.challengeId),
+    challengeTagTag (PK, FK -> Tag.tagId)
+)

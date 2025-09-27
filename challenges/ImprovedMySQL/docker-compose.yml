@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    build: ./mysql
+    ports:
+      - "3307:3307"
+    environment:
+      MYSQL_ROOT_PASSWORD: QylWbngY2gm3OTO4BUBJtn8Ik1iTPeaCIhptoEXJRaouJH3rPs7kcNC3pjDA
+      MYSQL_DATABASE: challenge_db
+
+  checker:
+    build: ./checker
+    depends_on:
+      - mysql
+
+networks:
+  app-network:
+    driver: bridge

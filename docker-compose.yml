@@ -1,0 +1,54 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  frontend:
+    volumes:
+      - ./doc/mkdocs/docs/challenges:/usr/share/nginx/html/challenges_doc
+    build:
+      context: ./frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=defiut
+      - MYSQL_USER=defiut
+      - MYSQL_PASSWORD=password
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./doc/database/scripts:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+  mkdocs:
+    build:
+      context: ./doc/mkdocs
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./doc/mkdocs:/app
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:

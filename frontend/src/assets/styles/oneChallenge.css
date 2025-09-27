@@ -1,0 +1,161 @@
+h3 {
+    margin-bottom: 15px;
+}
+
+#submitSolution {
+    margin-bottom: 15px;
+}
+
+#retourChallengesPage {
+    position: relative;
+    left: 0;
+    background-color: #66a3b2;
+    display: block;
+    margin: 20px;
+}
+
+#retourChallengesPage:hover {
+    background-color: #79adb9;
+    color: #fff;
+}
+
+#submitSolution {
+    background-color: #66a3b2;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+#submitSolution:hover {
+    background-color: #79adb9;
+}
+
+#inputFlag {
+    margin-bottom: 20px;
+}
+
+.validation-success,
+.validation-failure {
+    width: 50%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px auto;
+}
+
+.validation-success {
+    color: green;
+    border: 1px solid green;
+    background-color: #eaffea;
+}
+
+.validation-failure {
+    color: red;
+    border: 1px solid red;
+    background-color: #ffeaea;
+}
+
+.container-challenge {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#global-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+}
+
+#chall-infos {
+    text-align: left;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#chall-infos li {
+    margin-bottom: 10px;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    margin: 10px 0 0 0;
+    list-style-type: none;
+    justify-content: center;
+}
+
+.tag-item {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 16px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+#markdown {
+    text-align: left;
+    max-width: 100%;
+}
+
+#container-md-infos {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#right-container>div {
+    margin-left: 20px;
+}
+
+#flag-container {
+    display: block;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+
+    .container-challenge,
+    #markdown,
+    #container-md-infos,
+    #global-container,
+    #right-container {
+        max-width: 100%;
+        margin-left: 0;
+        align-items: center;
+    }
+
+    #markdown {
+        overflow-y: scroll;
+    }
+
+    #container-md-infos {
+        display: block;
+    }
+
+    #right-container>div {
+        margin-left: 0;
+    }
+
+    #global-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    #container-1 {
+        max-width: 85%;
+        margin: 0;
+    }
+}

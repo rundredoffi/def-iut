@@ -1,0 +1,89 @@
+@font-face {
+	font-family: 'Bakbak One';
+	src: url('../fonts/BakbakOne-Regular.ttf');
+}
+
+@font-face {
+	font-family: 'Barlow Condensed';
+	src: url('../fonts/BarlowCondensed-Regular.ttf');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.main-title {
+	font-family: 'Bakbak One', sans-serif;
+	color: #79adb9;
+	margin: 40px 0 0;
+
+}
+
+.secondary-title {
+	color: #FBA874;
+}
+
+.accent1 {
+	background-color: #364f5e;
+}
+
+.accent2 {
+	background-color: #75D7D5;
+}
+
+button:hover {
+	background-color: #79adb9;
+	color: #fff;
+}
+
+body {
+	background-color: #f2f7f9;
+}
+
+.main-text {
+	color: #333333;
+}
+
+.interactive-text,
+a {
+	color: #66a3b2;
+}
+
+.error {
+	color: #d9534f
+}
+
+#app {
+	font-family: 'Barlow Condensed', sans-serif;
+	text-align: center;
+}
+
+form {
+	margin-top: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	color: #333333;
+}
+
+input {
+	width: 300px;
+	padding: 8px;
+	margin-bottom: 10px;
+}
+
+button {
+	color: #fff;
+	padding: 10px;
+	border: none;
+	cursor: pointer;
+}
+
+.register,
+.login {
+	padding-top: 5vh;
+	padding-bottom: 59px; /* 39 (height du footer) + 20px de marge */
+}

@@ -1,0 +1,159 @@
+.users-list {
+    list-style-type: none;
+    text-align: justify;
+    align-items: center;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+}
+
+.users-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.users-list li:nth-child(even) {
+    background-color: #f2f7f9;
+}
+
+.users-list li:nth-child(odd) {
+    background-color: #a8eceb;
+}
+
+.logs-list li:nth-child(even) {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f2f7f9;
+
+}
+
+.logs-list li:nth-child(odd) {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #a8eceb;
+}
+
+.logs-list {
+    list-style-type: none;
+    text-align: justify;
+    align-items: center;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+    min-height: fit-content;
+    max-height: 150px;
+    overflow-x: scroll;
+}
+
+.box-title {
+    text-align: center;
+    font-size: 30px;
+    margin: 10px;
+}
+
+.user-modify-form {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    text-align: justify;
+    align-items: center;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+    padding: 0;
+}
+
+.user-modify-form label {
+    font-size: 15px;
+    margin: 12px 10px;
+    font-weight: bold;
+    width: 35px;
+}
+
+.user-modify-form input,
+.user-modify-form select {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.user-modify-form input:read-only {
+    background-color: #e0e0e0;
+}
+
+.user-modify-form button {
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    color: black;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-modify-form button:hover {
+    background-color: #79adb9;
+    color: #fff;
+}
+
+.user-modify-form button[type="button"] {
+    background-color: #d9534f;
+    color: white;
+}
+
+.user-modify-form button[type="button"]:hover {
+    background-color: #680300;
+    color: white;
+}
+
+.user-modify-form div:nth-child(even) {
+    background-color: #f2f7f9;
+    width: 100%;
+}
+
+.user-modify-form div:nth-child(odd) {
+    background-color: #a8eceb;
+    width: 100%;
+}
+
+.users-list li.selected {
+    font-weight: bold;
+}
+
+.user-modify-form div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-modify-form div input,
+.user-modify-form div select {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 290px;
+}
+
+#ban-user {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#ban-user:hover {
+    background-color: #680300;
+}
+
+.user-modify-form input,
+.user-modify-form select {
+    width: 100%;
+    box-sizing: border-box;
+    height: 30px;
+}
