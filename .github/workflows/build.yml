@@ -32,6 +32,23 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Cache Node packages
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: frontend/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install frontend dependencies
+        run: cd frontend && npm ci
+      - name: Lint frontend
+        run: cd frontend && npm run lint
+      - name: Build frontend
+        run: cd frontend && npm run build
       - name: Build and analyze
         working-directory: backend
         env:
