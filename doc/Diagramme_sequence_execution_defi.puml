@@ -1,0 +1,72 @@
+@startuml
+title **Diagramme de séquence d'exécution des défis DefIUT**
+
+' --- Acteurs et participants ---
+actor Utilisateur
+participant "Frontend" as Frontend
+participant "ChallengeController" as Controller
+participant "AuthenticationController" as Auth
+participant "ChallengeDAO" as ChallengeDAO
+participant "CompletedDAO" as CompletedDAO
+participant "AwardedDAO" as AwardedDAO
+database "Base de données" as DB
+
+' --- Style ---
+skinparam monochrome false
+skinparam shadowing true
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+
+' =============================================
+' 1. Récupérer la liste des défis
+' =============================================
+Utilisateur -> Frontend : GET /api/challenges
+Frontend -> Controller : Demande la liste des défis
+Controller -> ChallengeDAO : findAll()
+ChallengeDAO -> DB : SELECT * FROM Challenge
+DB --> ChallengeDAO : Liste des défis
+Controller --> Frontend : Retourne la liste (JSON)
+Frontend --> Utilisateur : Affiche les défis
+
+' =============================================
+' 2. Vérifier un flag de défi
+' =============================================
+Utilisateur -> Frontend : POST /api/challenges/{id}/flag {token, flag}
+Frontend -> Controller : Soumet le flag
+Controller -> Auth : tokenToUser(token)
+Auth -> DB : Vérifie le token
+DB --> Auth : Utilisateur valide
+Controller -> ChallengeDAO : select(id)
+ChallengeDAO -> DB : SELECT * FROM Challenge WHERE id=?
+DB --> ChallengeDAO : Défis
+Controller -> Controller : Compare le flag
+alt Flag correct
+    Controller -> CompletedDAO : Met à jour le statut (COMPLETED)
+    CompletedDAO -> DB : INSERT/UPDATE INTO Completed
+    DB --> CompletedDAO : Confirmation
+    Controller -> AwardedDAO : Vérifie les badges (addBadgeToUser)
+    AwardedDAO -> DB : INSERT INTO Awarded (si badge débloqué)
+    DB --> AwardedDAO : Confirmation
+    Controller -> DB : Met à jour le score de l'utilisateur
+    Controller --> Frontend : {result: "OK"}
+    Frontend --> Utilisateur : Succès + score mis à jour
+else Flag incorrect
+    Controller --> Frontend : {result: "WRONG"}
+    Frontend --> Utilisateur : Échec
+end
+
+' =============================================
+' 3. Vérification des badges
+' =============================================
+Controller -> AwardedDAO : hasUserAchievement(userId, achievementId)
+AwardedDAO -> DB : Vérifie si le badge existe déjà
+DB --> AwardedDAO : Résultat
+alt Badge non obtenu
+    Controller -> Controller : Vérifie les conditions (ex: crypto, 2 défis en 24h, etc.)
+    Controller -> AwardedDAO : insert(Awarded)
+    AwardedDAO -> DB : INSERT INTO Awarded
+    DB --> AwardedDAO : Confirmation
+    Controller -> LogUtil : Log le badge obtenu
+end
+
+@enduml
