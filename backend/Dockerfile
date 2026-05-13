@@ -11,7 +11,7 @@ RUN cp ./src/main/resources/docker.properties ./src/main/resources/application.p
 RUN mvn clean package -DskipTests
 
 # Use a minimal JDK image to run the application
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 WORKDIR /app
 RUN mkdir /app/logs
 COPY --from=build /app/target/backend-0.0.1-SNAPSHOT.jar app.jar
