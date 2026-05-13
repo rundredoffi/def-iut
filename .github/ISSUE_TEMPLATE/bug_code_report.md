@@ -2,7 +2,7 @@
 name: "Rapport de qualité de code (Code quality)"
 about: "Signaler des problèmes de qualité de code (duplication, mauvaise lisibilité, complexité élevée, etc.)"
 title: '[QUALITY] - '
-labels: 'bug, code-quality'
+labels: 'code-quality'
 assignees: ''
 ---
 
