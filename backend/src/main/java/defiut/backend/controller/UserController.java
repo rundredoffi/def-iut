@@ -28,7 +28,6 @@ public class UserController {
 	 *
 	 * @return List of users with their scores
 	 */
-	@CrossOrigin(origins = "*")
 	@GetMapping("/users/score")
 	public ResponseEntity<String> getUsersScore() {
 		try {
@@ -69,7 +68,6 @@ public class UserController {
 	 * @param userJson JSON containing user registration data
 	 * @return Success message or error status
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/users")
 	public ResponseEntity<String> addUser(@RequestBody String userJson) {
 		try {
@@ -104,7 +102,6 @@ public class UserController {
 	 * @param userJson JSON containing updated user data and authentication token
 	 * @return Success message or error status
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/user/update")
 	public ResponseEntity<String> updateUser(@RequestBody String userJson) {
 		try {
@@ -136,7 +133,6 @@ public class UserController {
 	 * @param userJson JSON containing authentication token
 	 * @return Success message or error status
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/user/delete")
 	public ResponseEntity<String> deleteUser(@RequestBody String userJson) {
 		try {
@@ -164,7 +160,6 @@ public class UserController {
 	 * @param userJson JSON containing login credentials
 	 * @return Access token and user info or error message
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/users/login")
 	public ResponseEntity<String> login(@RequestBody String userJson) {
 		try {
@@ -195,7 +190,6 @@ public class UserController {
 	 * @param userJson JSON containing authentication token
 	 * @return Success message or error status
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/users/logout")
 	public ResponseEntity<String> logout(@RequestBody String userJson) {
 		try {
@@ -220,7 +214,6 @@ public class UserController {
 	 * @param JSONToken JSON containing authentication token
 	 * @return User details and awards or error message
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/user")
 	public ResponseEntity<String> getUserByToken(@RequestBody String JSONToken) {
 		try {
@@ -258,7 +251,6 @@ public class UserController {
 	 * @param JSONToken JSON containing authentication token
 	 * @return User's score or error message
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/users/points")
 	public ResponseEntity<String> getPointsByUser(@RequestBody String JSONToken) {
 		try {
@@ -280,7 +272,6 @@ public class UserController {
 	 * @param JSONToken JSON containing authentication token
 	 * @return List of user's badges or error message
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/users/badges")
 	public ResponseEntity<String> getBadgesByUser(@RequestBody String JSONToken) {
 		try {

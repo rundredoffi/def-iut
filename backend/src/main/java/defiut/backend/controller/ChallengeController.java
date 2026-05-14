@@ -29,7 +29,6 @@ public class ChallengeController {
 	 *
 	 * @return List of all challenges with basic info
 	 */
-	@CrossOrigin(origins = "*")
 	@GetMapping("/challenges")
 	public ResponseEntity<String> getChallenges() {
 		try {
@@ -60,7 +59,6 @@ public class ChallengeController {
 	 * @param JSONToken Authentication token
 	 * @return List of started challenges with details
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/challenges/started")
 	public ResponseEntity<String> getStartedChallengesByUser(@RequestBody String JSONToken) {
 		try {
@@ -104,7 +102,6 @@ public class ChallengeController {
 	 * @param JSONToken Authentication token
 	 * @return List of completed challenges with details
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/challenges/completed")
 	public ResponseEntity<String> getCompletedChallengesByUser(@RequestBody String JSONToken) {
 		try {
@@ -148,7 +145,6 @@ public class ChallengeController {
 	 * @param JSONToken Authentication token
 	 * @return List of all challenges with status and details
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/challenges/list")
 	public ResponseEntity<String> getChallengesByUser(@RequestBody String JSONToken) {
 		try {
@@ -195,7 +191,6 @@ public class ChallengeController {
 	 * @param JSONToken Authentication token
 	 * @return Challenge details including user's completion status
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/challenges/{id}")
 	public ResponseEntity<String> getChallengeById(@PathVariable int id, @RequestBody String JSONToken) {
 		try {
@@ -238,7 +233,6 @@ public class ChallengeController {
 	 * @param JSON        Contains token and submitted flag
 	 * @return Result of verification and updated user status
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/challenges/{id}/flag")
 	public ResponseEntity<String> verifyFlag(@PathVariable("id") int idChallenge, @RequestBody String JSON) {
 		try {
@@ -304,7 +298,6 @@ public class ChallengeController {
 	 * @param id Challenge ID
 	 * @return List of tags with their details
 	 */
-	@CrossOrigin(origins = "*")
 	@GetMapping("/challenges/{id}/tags")
 	public ResponseEntity<String> getTagsByChallenge(@PathVariable int id) {
 		try {
