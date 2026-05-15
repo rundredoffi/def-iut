@@ -63,19 +63,21 @@ public class AchievementDAO {
      */
     public ArrayList<Achievement> findAll() throws SQLException {
         String query = "SELECT * FROM Achievement";
-
-        PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query);
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        ArrayList<Achievement> achievements = new ArrayList<>();
-
-        while (resultSet.next()) {
-            achievements.add(new Achievement(resultSet.getInt("achievementId"), resultSet.getString("achievementTitle"), resultSet.getString("achievementDescription"), resultSet.getString("achievementColor")));
+        try(PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query)){
+            try(ResultSet resultSet = preparedStatement.executeQuery()){
+                ArrayList<Achievement> achievements = new ArrayList<>();
+                while (resultSet.next()) {
+                    achievements.add(new Achievement(
+                        resultSet.getInt("achievementId"), 
+                        resultSet.getString("achievementTitle"), 
+                        resultSet.getString("achievementDescription"), 
+                        resultSet.getString("achievementColor")
+                    ));
+                }
+                return achievements;
+            }
         }
-
-        return achievements;
     }
-
     /**
      * Insert an achievement in the database
      *
@@ -84,13 +86,12 @@ public class AchievementDAO {
      */
     public void insert(Achievement achievement) throws SQLException {
         String query = "INSERT INTO Achievement (title, description, color) VALUES (?, ?, ?)";
-
-        PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query);
-        preparedStatement.setString(1, achievement.getTitle());
-        preparedStatement.setString(2, achievement.getDescription());
-        preparedStatement.setString(3, achievement.getColor());
-
-        preparedStatement.executeUpdate();
+        try(PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query)){
+            preparedStatement.setString(1, achievement.getTitle());
+            preparedStatement.setString(2, achievement.getDescription());
+            preparedStatement.setString(3, achievement.getColor());
+            preparedStatement.executeUpdate();
+        }
     }
 
     /**
@@ -102,13 +103,13 @@ public class AchievementDAO {
     public void update(Achievement achievement) throws SQLException {
         String query = "UPDATE Achievement SET title=?, description=?, color=? WHERE id=?";
 
-        PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query);
-        preparedStatement.setString(1, achievement.getTitle());
-        preparedStatement.setString(2, achievement.getDescription());
-        preparedStatement.setString(3, achievement.getColor());
-        preparedStatement.setInt(4, achievement.getId());
-
-        preparedStatement.executeUpdate();
+        try(PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query)){
+            preparedStatement.setString(1, achievement.getTitle());
+            preparedStatement.setString(2, achievement.getDescription());
+            preparedStatement.setString(3, achievement.getColor());
+            preparedStatement.setInt(4, achievement.getId());
+            preparedStatement.executeUpdate();
+        }
     }
 
     /**
@@ -119,11 +120,10 @@ public class AchievementDAO {
      */
     public void delete(Achievement achievement) throws SQLException {
         String query = "DELETE FROM Achievement WHERE id=?";
-
-        PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, achievement.getId());
-
-        preparedStatement.executeUpdate();
+        try(PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query)){
+            preparedStatement.setInt(1, achievement.getId());
+            preparedStatement.executeUpdate();
+        }
     }
 
     /**
@@ -133,15 +133,12 @@ public class AchievementDAO {
      * @return true if the achievement exists, false otherwise
      */
     public boolean exists(Achievement achievement) {
-        try {
-            String query = "SELECT * FROM Achievement WHERE id=?";
-
-            PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query);
+        String query = "SELECT 1 FROM Achievement WHERE id=?";
+        try (PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query)) {
             preparedStatement.setInt(1, achievement.getId());
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            return resultSet.next();
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                return resultSet.next();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
