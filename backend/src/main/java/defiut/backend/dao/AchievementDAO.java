@@ -37,14 +37,20 @@ public class AchievementDAO {
      */
     public Achievement select(int id) throws SQLException {
         String query = "SELECT * FROM Achievement WHERE achievementId=?";
-
-        PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query);
-        preparedStatement.setInt(1, id);
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        if (resultSet.next()) {
-            return new Achievement(resultSet.getInt("achievementId"), resultSet.getString("achievementTitle"), resultSet.getString("achievementDescription"), resultSet.getString("achievementColor"));
+        
+        try (PreparedStatement preparedStatement = MySqlConnector.getInstance().getConnection().prepareStatement(query)) {
+            preparedStatement.setInt(1, id);
+            
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return new Achievement(
+                        resultSet.getInt("achievementId"), 
+                        resultSet.getString("achievementTitle"), 
+                        resultSet.getString("achievementDescription"), 
+                        resultSet.getString("achievementColor")
+                    );
+                }
+            }
         }
         return null;
     }
