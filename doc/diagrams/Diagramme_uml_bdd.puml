@@ -1,0 +1,81 @@
+@startuml
+title **Diagramme UML de la base de données DefIUT**
+
+' --- Configuration pour un rendu optimal ---
+skinparam monochrome false
+skinparam shadowing true
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam classAttributeIconSize 0
+
+' --- Définition des entités ---
+class User {
+  + userId [PK, NOT NULL, AUTO_INCREMENT]
+  + userNickname [NOT NULL, UNIQUE]
+  + userEmail [NOT NULL, UNIQUE]
+  + userPassword [NOT NULL]
+  + userRole [NOT NULL, CHECK: ADMIN|USER]
+  + userScore
+}
+
+class Challenge {
+  + challengeId [PK, NOT NULL, AUTO_INCREMENT]
+  + challengeName [NOT NULL]
+  + challengeDate [NOT NULL]
+  + challengeDifficulty [NOT NULL, CHECK: EASY|MEDIUM|HARD]
+  + challengeLanguage [NOT NULL]
+  + challengeDescription
+  + challengeFlag [NOT NULL]
+  + challengeDocker [NOT NULL]
+  + challengePoints [NOT NULL, CHECK: >= 0]
+}
+
+class Tag {
+  + tagId [PK, NOT NULL, AUTO_INCREMENT]
+  + tagName [NOT NULL, UNIQUE]
+  + tagColor [NOT NULL]
+}
+
+class Achievement {
+  + achievementId [PK, NOT NULL]
+  + achievementColor [NOT NULL]
+  + achievementTitle [NOT NULL]
+  + achievementDescription [NOT NULL]
+}
+
+class Granted {
+  + grantedUser [PK, FK > User.userId, NOT NULL]
+  + grantedBadgeRank [PK, NOT NULL, CHECK: 1|2|3]
+  + grantedDate [NOT NULL]
+}
+
+class Completed {
+  + completedUser [PK, FK > User.userId, NOT NULL]
+  + completedChallenge [PK, FK > Challenge.challengeId, NOT NULL]
+  + completedStatus [NOT NULL, CHECK: STARTED|COMPLETED]
+  + completedDate [NOT NULL]
+}
+
+class ChallengeTag {
+  + challengeTagChallenge [PK, FK > Challenge.challengeId, NOT NULL]
+  + challengeTagTag [PK, FK > Tag.tagId, NOT NULL]
+}
+
+class Awarded {
+  + awardedUserId [PK, FK > User.userId, NOT NULL]
+  + awardedAchievementId [PK, FK > Achievement.achievementId, NOT NULL]
+  + awardedDate [NOT NULL]
+}
+
+' --- Relations ---
+User ||--o{ Completed : "1:N"
+User ||--o{ Granted : "1:N"
+User ||--o{ Awarded : "1:N"
+
+Challenge ||--o{ Completed : "1:N"
+Challenge ||--o{ ChallengeTag : "1:N"
+
+Tag ||--o{ ChallengeTag : "1:N"
+
+Achievement ||--o{ Awarded : "1:N"
+@enduml

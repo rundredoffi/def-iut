@@ -39,7 +39,6 @@ public class AdminController {
 	 * @param JSONToken JSON containing authentication token
 	 * @return List of users with their details or error message
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/admin/users")
 	public ResponseEntity<String> getUsers(@RequestBody String JSONToken) {
 		try {
@@ -76,7 +75,6 @@ public class AdminController {
 	 * @param userJson JSON containing user data and authentication token
 	 * @return Success message or error status
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/admin/user/update")
 	public ResponseEntity<String> updateUserAdmin(@RequestBody String userJson) {
 		try {
@@ -111,7 +109,6 @@ public class AdminController {
 	 * @param userJson JSON containing user ID and authentication token
 	 * @return Success message or error status
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/admin/user/delete")
 	public ResponseEntity<String> deleteUserAdmin(@RequestBody String userJson) {
 		try {
@@ -148,7 +145,6 @@ public class AdminController {
 	 * @param JSONToken JSON containing authentication token
 	 * @return List of log entries or error message
 	 */
-	@CrossOrigin(origins = "*")
 	@PostMapping("/logs")
 	public ResponseEntity<String> getLogs(@RequestBody String JSONToken) {
 		try {
